@@ -62,7 +62,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 np.random.seed(42)  # Фиксируем рандом для воспроизводимости
-shots = np.random.normal(loc=0, scale=2, size=(2, 2))  # Отклонения (x, y)
+shots = np.random.normal(loc=0, scale=5, size=(2, 2))  # Отклонения (x, y)
 
 # Вычисляем отклонения (расстояния от центра цели)
 distances = np.linalg.norm(shots, axis=1)
@@ -89,8 +89,54 @@ plt.show()
 
 ![image](https://github.com/user-attachments/assets/16deee94-7c0d-4ad9-9713-3edae4fd3b28)
 
-2. Программа для моделирования
+2. Программа для моделирования разброса урона арбалета и ее рузудьтаты:
 
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Генерация случайных значений урона с нормальным распределением
+np.random.seed(123)
+damage = np.random.normal(loc=25, scale=3, size=100)  # Средний урон = 50, СКО = 10
+
+# Визуализация гистограммы урона
+plt.figure(figsize=(8, 6))
+plt.hist(damage, bins=10, color='purple', alpha=0.7, edgecolor='black')
+plt.axvline(damage.mean(), color='red', linestyle='dashed', linewidth=2, label=f'Среднее: {damage.mean():.2f}')
+plt.axvline(damage.mean() + np.std(damage), color='green', linestyle='dotted', label=f'СКО: {np.std(damage):.2f}')
+plt.axvline(damage.mean() - np.std(damage), color='green', linestyle='dotted')
+plt.legend()
+plt.title('Распределение урона оружия')
+plt.xlabel('Урон')
+plt.ylabel('Частота')
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/e85b69cd-80ea-4e57-8a9f-9abd60235457)
+
+3. Программа вариативности времени отклика игрока и ее рузудьтаты:
+
+```py
+import numpy as np
+import matplotlib.pyplot as plt
+
+reaction_times = np.random.normal(loc=500, scale=40, size=20)  # Среднее время = 500 мс
+
+plt.figure(figsize=(8, 6))
+plt.plot(reaction_times, 'o-', color='teal')
+plt.axhline(reaction_times.mean(), color='red', linestyle='dashed', label=f'Среднее: {reaction_times.mean():.2f} мс')
+plt.fill_between(range(20),
+                 reaction_times.mean() - np.std(reaction_times),
+                 reaction_times.mean() + np.std(reaction_times),
+                 color='lightgreen', alpha=0.3, label=f'СКО: ±{np.std(reaction_times):.2f} мс')
+plt.legend()
+plt.title('Время реакции игрока')
+plt.xlabel('Событие')
+plt.ylabel('Время (мс)')
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/0fabadc6-ee85-4066-baf8-fb43bb767b23)
 
 
 ## Задание 3
