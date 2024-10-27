@@ -62,7 +62,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 np.random.seed(42)  # Фиксируем рандом для воспроизводимости
-shots = np.random.normal(loc=0, scale=5, size=(2, 2))  # Отклонения (x, y)
+shots = np.random.normal(loc=0, scale=5, size=(2, 2))  # Отклонения (x, y) из арбалета произведено 2 выстрела
 
 # Вычисляем отклонения (расстояния от центра цели)
 distances = np.linalg.norm(shots, axis=1)
@@ -97,7 +97,7 @@ import matplotlib.pyplot as plt
 
 # Генерация случайных значений урона с нормальным распределением
 np.random.seed(123)
-damage = np.random.normal(loc=25, scale=3, size=100)  # Средний урон = 50, СКО = 10
+damage = np.random.normal(loc=25, scale=3, size=100)  
 
 # Визуализация гистограммы урона
 plt.figure(figsize=(8, 6))
